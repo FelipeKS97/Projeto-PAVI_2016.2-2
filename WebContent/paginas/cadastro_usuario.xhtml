@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head> 	
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		<title>Cadastro | Melhor Amigo</title>
+		
+        <link href="../bootstrap/css/bootstrap.css" rel="stylesheet" media="screen" />
+
+        <link rel="stylesheet" type="text/css" href="../css/layout_default.css" />
+        <link rel="stylesheet" type="text/css" href="../css/cadastro_usuario.css" />
+    </h:head>
+    <h:body> 
+        <div class="container mycontainer">
+            <header>
+            	<ui:include src="../code_default/header_e_footer/header.xhtml" />        
+            </header>
+
+            <article>            
+                <div class="cabecalho center">
+                    <h2>Cadastre-se</h2>
+                </div>
+                
+                <h:form id="formCadastro" class="form-horizontal">
+                    <fieldset>
+                        <legend>Dados Pessoais</legend>
+                        <div class="campo">
+                            <h:outputLabel class="control-label" value="Nome Completo:"/>
+                            <div class="controls">
+                                <h:inputText class="input-xlarge" type="text" name="nome" required="true" value="#{usuarioBean.nome}"/>
+                            </div>
+                        </div>
+                        <div class="campo">
+                        	<h:outputLabel class="control-label" value="CPF:"/>
+                            <div class="controls">
+                                <h:inputText class="input-small" type="text" size="11" maxlength="11" name="cpf" required="true" value="#{usuarioBean.cpf}"/>
+                            </div>
+                        </div>
+                        <div class="campo">
+                            <h:outputLabel class="control-label" value="Idade:"/>
+                            <div class="controls">
+                                <h:inputText class="input-mini" type="text" maxlength="3" name="idade" required="true" value="#{usuarioBean.idade}"/>
+                            </div>
+                        </div>
+                        <div class="campo">
+                            <h:outputLabel class="control-label" value="Telefone:"/>
+                            <div class="controls">
+                                <h:inputText class="input-small" type="text" maxlength="11" name="telefone" value="#{usuarioBean.telefone}"/>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Endereço</legend>
+                        <div class="campo">
+                            <h:outputLabel class="control-label" value="CEP:"/>
+                            <div class="controls">
+                                <h:inputText class="input-small" type="text" maxlength="8" name="cep" required="true" value="#{usuarioBean.endereco.cep}"/>
+                            </div>
+                        </div>
+                        <div class="campo">
+                            <h:outputLabel class="control-label" value="Rua:"/>
+                            <div class="controls">
+                                <h:inputText class="input-xlarge" type="text" name="rua" value="#{usuarioBean.endereco.rua}"/> 
+                            </div>
+                        </div>
+                        <div class="campo">
+                            <h:outputLabel class="control-label" value="Número:"/>
+                            <div class="controls">
+                                <h:inputText class="input-mini" type="text" name="ncasa" value="#{usuarioBean.endereco.nCasa}"/>
+                            </div>
+                        </div>
+                        <div class="campo">
+                            <h:outputLabel class="control-label" value="Bairro:"/>
+                            <div class="controls">
+                                <h:inputText class="input-medium" type="text" name="bairro" value="#{usuarioBean.endereco.bairro}"/>
+                            </div>
+                        </div>
+                        <div class="campo">
+                            <h:outputLabel class="control-label" value="Complemento: "/>
+                            <div class="controls">
+                                <h:inputText class="input-xxlarge" type="text" name="complemento" value="#{usuarioBean.endereco.complemento}"/>
+                            </div>
+                        </div>
+                        <div class="campo">
+                            <h:outputLabel class="control-label" value="Cidade / Estado: "/>
+                            <div class="controls">
+                                <h:inputText class="input-medium" type="text" name="cidade" required="true" value="#{usuarioBean.endereco.cidade}"/>
+                                <h:selectOneMenu class="input-mini" name="estado" value="#{usuarioBean.endereco.estado}" style="margin-left: 1%">
+                                    <f:selectItem itemValue="Acre" itemLabel="AC"/>
+                                    <f:selectItem itemValue="Alagoas" itemLabel="AL"/>
+                                    <f:selectItem itemValue="Amazonas" itemLabel="AM"/>
+                                    <f:selectItem itemValue="Amapá" itemLabel="AP"/>
+                                    <f:selectItem itemValue="Bahia" itemLabel="BA"/>
+                                    <f:selectItem itemValue="Ceará" itemLabel="CE"/>
+                                    <f:selectItem itemValue="Distrito Federal" itemLabel="DF"/>
+                                    <f:selectItem itemValue="Espírito Santo" itemLabel="ES"/>
+                                    <f:selectItem itemValue="Goiás" itemLabel="GO"/>
+                                    <f:selectItem itemValue="Maranhão" itemLabel="MA"/>
+                                    <f:selectItem itemValue="Mato Grosso" itemLabel="MT"/>
+                                    <f:selectItem itemValue="Mato Grosso do Sul" itemLabel="MS"/>
+                                    <f:selectItem itemValue="Minas Gerais" itemLabel="MG"/>
+                                    <f:selectItem itemValue="Pará" itemLabel="PA"/>
+                                    <f:selectItem itemValue="Paraíba" itemLabel="PB"/>
+                                    <f:selectItem itemValue="Paraná" itemLabel="PR"/>
+                                    <f:selectItem itemValue="Pernambuco" itemLabel="PE"/>
+                                    <f:selectItem itemValue="Piauí" itemLabel="PI"/>
+                                    <f:selectItem itemValue="Rio de Janeiro" itemLabel="RJ"/>
+                                    <f:selectItem itemValue="Rio Grande do Norte" itemLabel="RN"/>
+                                    <f:selectItem itemValue="Rio Grande do Sul" itemLabel="RS"/>
+                                    <f:selectItem itemValue="Rondônia" itemLabel="RO"/>
+                                    <f:selectItem itemValue="Roraima" itemLabel="RR"/>
+                                    <f:selectItem itemValue="Santa Catarina" itemLabel="SC"/>
+                                    <f:selectItem itemValue="Sergipe" itemLabel="SE"/>
+                                    <f:selectItem itemValue="São Paulo" itemLabel="SP"/>
+                                    <f:selectItem itemValue="Tocantins" itemLabel="TO"/>
+                                </h:selectOneMenu>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Dados de Login</legend>
+                        <div class="alert alert-info fade in">
+                            <button type='button' class='close' data-dismiss='alert'>×</button>
+                            <strong>Atenção!</strong> Insira um email válido e a senha deverá ter no mínimo 6 caracteres
+                        </div>
+                        <div class="campo">
+                            <h:outputLabel class="control-label" value="Email:"/>
+                            <div class="controls">
+                                <h:inputText name="email" type="email" placeholder="melhoramigo@exemplo.com" required="true" value="#{usuarioBean.email}"/>
+                            </div>
+                        </div>
+                        <div class="campo">
+                            <h:outputLabel class="control-label" value="Senha:"/>
+                            <div class="controls">
+                                <h:inputSecret class="input-medium" type="password" name="senha1" required="true" value="#{usuarioBean.senha1}"/>
+                            </div>
+                        </div>
+                        <div class="campo">
+                            <h:outputLabel class="control-label" value="Confirme a senha:"/>
+                            <div class="controls">
+                                <h:inputSecret class="input-medium" type="password" name="senha2" required="true" value="#{usuarioBean.senha2}"/>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="form-actions">
+                        <h:commandButton class="btn btn-primary" value="Cadastrar" action="#{usuarioBean.cadastrar_usuario()}"/>
+                        <h:commandButton type="reset" class="btn" value="Limpar" style="margin-left: 1%"/>
+                    </div>
+                </h:form>
+            </article>
+
+            <footer> 
+				<ui:include src="../code_default/header_e_footer/footer.xhtml" /> 
+            </footer> 
+        </div>
+
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="../bootstrap/js/bootstrap.js"></script>
+    </h:body>
+</html>
