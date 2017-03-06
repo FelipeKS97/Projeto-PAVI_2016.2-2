@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	<h:head> 	
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>Login | Melhor Amigo</title>
+        
+        <!-- Bootstrap -->
+        <link href="../bootstrap/css/bootstrap.css" rel="stylesheet" media="screen"/>
+
+        <link rel="stylesheet" type="text/css" href="../css/layout_default.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/login_usuario.css"/>
+    </h:head>
+    <h:body> 
+        <div class="container mycontainer">
+            <header>
+            	<ui:include src="../code_default/header_e_footer/header.xhtml" />        
+            </header>
+
+            <article>             	
+            	<f:metadata>  
+			        <f:viewParam name="cadastro" value="#{detalhesPaginasBean.p_cadastro.parametro_get}" />
+			    </f:metadata>
+			    
+            	<h:outputText escape="false" value="#{detalhesPaginasBean.p_cadastro.cod_para_inserir}" rendered="${detalhesPaginasBean.p_cadastro.parametro_get.equals('ok')}"/>
+           
+                <div class="cabecalho center">
+                    <h2>Login<br/><small>Seja bem-vindo! Faça o login abaixo.</small></h2>
+                </div>
+
+                <h:form id="formLogin" class="form-horizontal">
+                    <fieldset>
+                        <div class="control-group">
+                            <label class="control-label" for="inputEmail">Email</label>
+                            <div class="controls">
+                                <h:inputText name="email" type="text" required="true" value="#{usuarioBean.usuarioVO.email}"
+                                	requiredMessage="Informe o Email!" id="inputEmail"/>
+                                <h:message for="inputEmail" class="msgErro" style="color: red; margin-left: 1%; font-style: italic"/>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <label class="control-label" for="inputPassword">Senha</label>
+                            <div class="controls">
+                                <h:inputSecret type="password" name="senha" value="#{usuarioBean.usuarioVO.senha}" required="true"
+                                	requiredMessage="Informe a Senha!" id="inputPassword"/>
+                                <h:message for="inputPassword" class="msgErro" style="color: red; margin-left: 1%; font-style: italic"/>
+                            </div>
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <h:commandButton class="btn" value="Entrar"/>
+                            </div>
+                        </div>
+                    </fieldset>
+                </h:form>
+
+                <div id="ajuda" class="center">
+                    <p><a href="#">Esqueci a senha</a> | <a href="cadastro_usuario.xhtml" target="_BLANK">Cadastre-se</a></p>
+                </div>
+            </article>
+
+            <footer> 
+				<ui:include src="../code_default/header_e_footer/footer.xhtml" /> 
+            </footer> 
+        </div>
+
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="../bootstrap/js/bootstrap.js"></script>
+    </h:body>
+</html>

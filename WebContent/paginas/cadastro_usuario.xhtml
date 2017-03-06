@@ -6,10 +6,11 @@
     xmlns:f="http://java.sun.com/jsf/core"  
     xmlns:p="http://primefaces.org/ui"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-<h:head> 	
+	<h:head> 	
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 		<title>Cadastro | Melhor Amigo</title>
 		
+		<!-- Bootstrap -->
         <link href="../bootstrap/css/bootstrap.css" rel="stylesheet" media="screen" />
 
         <link rel="stylesheet" type="text/css" href="../css/layout_default.css" />
@@ -32,25 +33,31 @@
                         <div class="campo">
                             <h:outputLabel class="control-label" value="Nome Completo:"/>
                             <div class="controls">
-                                <h:inputText class="input-xlarge" type="text" name="nome" required="true" value="#{usuarioBean.nome}"/>
+                                <h:inputText class="input-xlarge" type="text" name="nome" required="true" value="#{usuarioBean.usuarioVO.nome}"
+                                	requiredMessage="Informe o nome!" id="nome"/>
+                                <h:message for="nome" class="msgErro" style="color: red; margin-left: 1%; font-style: italic"/>
                             </div>
                         </div>
                         <div class="campo">
                         	<h:outputLabel class="control-label" value="CPF:"/>
                             <div class="controls">
-                                <h:inputText class="input-small" type="text" size="11" maxlength="11" name="cpf" required="true" value="#{usuarioBean.cpf}"/>
+                                <h:inputText class="input-small" type="text" size="11" maxlength="11" name="cpf" required="true" value="#{usuarioBean.usuarioVO.cpf}"
+                                	requiredMessage="Informe o CPF!" id="cpf"/>
+                                <h:message for="cpf" class="msgErro" style="color: red; margin-left: 1%; font-style: italic"/>
                             </div>
                         </div>
                         <div class="campo">
                             <h:outputLabel class="control-label" value="Idade:"/>
                             <div class="controls">
-                                <h:inputText class="input-mini" type="text" maxlength="3" name="idade" required="true" value="#{usuarioBean.idade}"/>
+                                <h:inputText class="input-mini" type="text" maxlength="3" name="idade" required="true" value="#{usuarioBean.usuarioVO.idade}"
+                                	requiredMessage="Informe a Idade!" id="idade"/>
+                                <h:message for="idade" class="msgErro" style="color: red; margin-left: 1%; font-style: italic"/>
                             </div>
                         </div>
                         <div class="campo">
                             <h:outputLabel class="control-label" value="Telefone:"/>
                             <div class="controls">
-                                <h:inputText class="input-small" type="text" maxlength="11" name="telefone" value="#{usuarioBean.telefone}"/>
+                                <h:inputText class="input-small" type="text" maxlength="11" name="telefone" value="#{usuarioBean.usuarioVO.telefone}"/>
                             </div>
                         </div>
                     </fieldset>
@@ -59,38 +66,41 @@
                         <div class="campo">
                             <h:outputLabel class="control-label" value="CEP:"/>
                             <div class="controls">
-                                <h:inputText class="input-small" type="text" maxlength="8" name="cep" required="true" value="#{usuarioBean.endereco.cep}"/>
+                                <h:inputText class="input-small" type="text" maxlength="8" name="cep" required="true" value="#{usuarioBean.usuarioVO.endereco.cep}"
+                                	requiredMessage="Informe o CEP!" id="cep"/>
+                                <h:message for="cep" class="msgErro" style="color: red; margin-left: 1%; font-style: italic"/>
                             </div>
                         </div>
                         <div class="campo">
                             <h:outputLabel class="control-label" value="Rua:"/>
                             <div class="controls">
-                                <h:inputText class="input-xlarge" type="text" name="rua" value="#{usuarioBean.endereco.rua}"/> 
+                                <h:inputText class="input-xlarge" type="text" name="rua" value="#{usuarioBean.usuarioVO.endereco.rua}"/> 
                             </div>
                         </div>
                         <div class="campo">
                             <h:outputLabel class="control-label" value="Número:"/>
                             <div class="controls">
-                                <h:inputText class="input-mini" type="text" name="ncasa" value="#{usuarioBean.endereco.nCasa}"/>
+                                <h:inputText class="input-mini" type="text" name="ncasa" value="#{usuarioBean.usuarioVO.endereco.nCasa}"/>
                             </div>
                         </div>
                         <div class="campo">
                             <h:outputLabel class="control-label" value="Bairro:"/>
                             <div class="controls">
-                                <h:inputText class="input-medium" type="text" name="bairro" value="#{usuarioBean.endereco.bairro}"/>
+                                <h:inputText class="input-medium" type="text" name="bairro" value="#{usuarioBean.usuarioVO.endereco.bairro}"/>
                             </div>
                         </div>
                         <div class="campo">
                             <h:outputLabel class="control-label" value="Complemento: "/>
                             <div class="controls">
-                                <h:inputText class="input-xxlarge" type="text" name="complemento" value="#{usuarioBean.endereco.complemento}"/>
+                                <h:inputText class="input-xxlarge" type="text" name="complemento" value="#{usuarioBean.usuarioVO.endereco.complemento}"/>
                             </div>
                         </div>
                         <div class="campo">
                             <h:outputLabel class="control-label" value="Cidade / Estado: "/>
                             <div class="controls">
-                                <h:inputText class="input-medium" type="text" name="cidade" required="true" value="#{usuarioBean.endereco.cidade}"/>
-                                <h:selectOneMenu class="input-mini" name="estado" value="#{usuarioBean.endereco.estado}" style="margin-left: 1%">
+                                <h:inputText class="input-medium" type="text" name="cidade" required="true" value="#{usuarioBean.usuarioVO.endereco.cidade}"
+                                	requiredMessage="Informe a Cidade!" id="cidade"/>
+                                <h:selectOneMenu class="input-mini" name="estado" value="#{usuarioBean.usuarioVO.endereco.estado}" style="margin-left: 1%">
                                     <f:selectItem itemValue="Acre" itemLabel="AC"/>
                                     <f:selectItem itemValue="Alagoas" itemLabel="AL"/>
                                     <f:selectItem itemValue="Amazonas" itemLabel="AM"/>
@@ -119,6 +129,7 @@
                                     <f:selectItem itemValue="São Paulo" itemLabel="SP"/>
                                     <f:selectItem itemValue="Tocantins" itemLabel="TO"/>
                                 </h:selectOneMenu>
+                                <h:message for="cidade" class="msgErro" style="color: red; margin-left: 1%; font-style: italic"/>
                             </div>
                         </div>
                     </fieldset>
@@ -131,19 +142,25 @@
                         <div class="campo">
                             <h:outputLabel class="control-label" value="Email:"/>
                             <div class="controls">
-                                <h:inputText name="email" type="email" placeholder="melhoramigo@exemplo.com" required="true" value="#{usuarioBean.email}"/>
+                                <h:inputText name="email" type="email" required="true" value="#{usuarioBean.usuarioVO.email}"
+                                	requiredMessage="Informe o Email!" id="email"/>
+                                <h:message for="email" class="msgErro" style="color: red; margin-left: 1%; font-style: italic"/>
                             </div>
                         </div>
                         <div class="campo">
                             <h:outputLabel class="control-label" value="Senha:"/>
                             <div class="controls">
-                                <h:inputSecret class="input-medium" type="password" name="senha1" required="true" value="#{usuarioBean.senha1}"/>
+                                <h:inputSecret class="input-medium" type="password" name="senha1" required="true" value="#{usuarioBean.usuarioVO.senha}"
+                                	requiredMessage="Informe a Senha!" id="senha1"/>
+                                <h:message for="senha1" class="msgErro" style="color: red; margin-left: 1%; font-style: italic"/>
                             </div>
                         </div>
                         <div class="campo">
                             <h:outputLabel class="control-label" value="Confirme a senha:"/>
                             <div class="controls">
-                                <h:inputSecret class="input-medium" type="password" name="senha2" required="true" value="#{usuarioBean.senha2}"/>
+                                <h:inputSecret class="input-medium" type="password" name="senha2" required="true" value="#{usuarioBean.senha2}"
+                                	requiredMessage="Confirme a Senha!" id="senha2"/>
+                                <h:message for="senha2" class="msgErro" style="color: red; margin-left: 1%; font-style: italic"/>
                             </div>
                         </div>
                     </fieldset>

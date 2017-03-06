@@ -69,9 +69,8 @@ public class CadastroUsuarioBO {
 		try {
 			int idadeInt = Integer.parseInt(idadeStr);
 
-			if (idadeInt >= 18) {
+			if (idadeInt >= 18)
 				return true;
-			}
 
 			return false;
 		} catch (NumberFormatException erro) {
@@ -83,9 +82,9 @@ public class CadastroUsuarioBO {
 		try {
 			Integer.parseInt(cepStr);
 			
-			if (cepStr.length() == 8) {
+			if (cepStr.length() == 8)
 				return true;
-			}
+			
 			return false;
 		} catch (NumberFormatException erro) {
 			return false;
@@ -94,23 +93,24 @@ public class CadastroUsuarioBO {
 
 	public boolean verificaEmail (Connection conexao, String email) {
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
-		if (usuarioDAO.buscaUsuario(conexao, email) == null) {
+		
+		if (usuarioDAO.buscaUsuario(conexao, email) == null)
 			return true;
-		}
+
 		return false;
 	}
 	
 	public boolean isSenha (String senha) {
-		if (senha.length() >= 6) {
+		if (senha.length() >= 6)
 			return true;
-		}
+
 		return false;
 	}
 	
 	public boolean verificaConfirmaSenha (String senha1, String senha2) {
-		if (senha1.equals(senha2)){
+		if (senha1.equals(senha2))
 			return true;
-		}
+		
 		return false;
 	}
 	
