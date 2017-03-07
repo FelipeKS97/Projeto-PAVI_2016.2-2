@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	<h:head> 	
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title>Melhor Amigo</title>
+        
+        <!-- Bootstrap -->
+        <link href="../bootstrap/css/bootstrap.css" rel="stylesheet" media="screen"/>
+
+        <link rel="stylesheet" type="text/css" href="css/layout_default.css"/>
+    </h:head>
+    <h:body> 
+        <div class="container mycontainer">
+            <header>
+            	<ui:include src="code_default/header_e_footer/header.xhtml" />        
+            </header>
+
+            <article>
+                <div id="myCarousel" class="carousel slide">
+                    <!-- Itens de carousel -->
+                    <div class="carousel-inner">
+                        <div class="active item">
+                        	<h:link><h:graphicImage alt="..." value="img/imgs_site/img_2.jpg"/></h:link>
+                            <div class="carousel-caption">
+                                <h:link>
+                                    <h4>Conheça nossos cãezinhos!</h4>
+                                    <p>Aqui você pode conhecer todos os nossos amigos, pode também adotá-los ou apadrinhá-los!</p>
+                                </h:link>
+                            </div>
+                        </div>
+                        <div class="item">
+                        	<h:link><h:graphicImage alt="..." value="img/imgs_site/img_12.jpg"/></h:link>
+                            <div class="carousel-caption">
+                                <h:link>
+                                    <h4>Faça uma doação!</h4>
+                                    <p>Ajude-nos a cuidar de nosso amigos!</p>
+                                </h:link>
+                            </div>
+                        </div>
+                        <div class="item">
+                        	<h:link><h:graphicImage alt="..." value="img/imgs_site/img_10.jpg"/></h:link>
+                            <div class="carousel-caption">
+                                <h:link>
+                                    <h4>Denuncie maus-tratos, isso é crime!</h4>
+                                    <p>Saiba mais aqui!</p>
+                                </h:link>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Navegador do carousel -->
+                    <a class="carousel-control left" href="#myCarousel" data-slide="prev"/>
+                    <a class="carousel-control right" href="#myCarousel" data-slide="next"/>
+                </div>
+
+                <blockquote>
+                    <p>A grandeza de uma nação e seu progresso moral podem ser julgados pelo modo como seus animais são tratados.</p>
+                    <small><cite title="Source Title">Mahatma Gandhi</cite></small>
+                </blockquote>
+
+                <div class="row-fluid">
+                    <ul class="thumbnails">
+                        <li class="span4">
+                            <h:link>
+                                <div class="thumbnail mythumbnail">
+                                    <h:graphicImage alt="..." value="img/imgs_site/img_8.jpg"/>
+                                    <div class="caption">
+                                        <h3 class="center">Adote</h3>
+                                        <p class="center">Dê um lar à um de nossos cãezinhos e ganhe um melhor amigo!</p>
+                                    </div>
+                                </div>
+                            </h:link>
+                        </li>
+                        <li class="span4">
+                            <h:link>
+                                <div class="thumbnail mythumbnail">
+                                	<h:graphicImage alt="..." value="img/imgs_site/img_1.jpg"/>
+                                    <div class="caption">
+                                        <h3 class="center">Apadrinhe</h3>
+                                        <p class="center">Apadrinhe um de nossos cãezinhos e seja nosso parceiro!</p>
+                                    </div>
+                                </div>
+                            </h:link>
+                        </li>
+                        <li class="span4">
+                            <h:link>
+                                <div class="thumbnail mythumbnail">
+                                	<h:graphicImage alt="..." value="img/imgs_site/img_9.jpg"/>
+                                    <div class="caption">
+                                        <h3 class="center">Doe</h3>
+                                        <p class="center">Ajude-nos!<br/>Qualquer valor será bem vindo!</p>
+                                    </div>                           
+                                </div>
+                            </h:link>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+
+            <footer> 
+				<ui:include src="code_default/header_e_footer/footer.xhtml" /> 
+            </footer> 
+        </div>
+
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="../bootstrap/js/bootstrap.js"></script>
+    </h:body>
+</html>

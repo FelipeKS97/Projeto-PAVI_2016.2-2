@@ -1,6 +1,5 @@
-SCROLL  AO ATIVAR O REQUIRED?
-TERMINAR O HEADER (SEGUNDA PARTE)
-FAZER LOGIN
+SCROLL AO ATIVAR O REQUIRED?
+INSERIR PÁGINA MEUS DADOS
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -37,3 +36,5 @@ FAZER LOGIN
 	private int nivelUsuario;
 	private int status_ban;
 	private EnderecoVO endereco = new EnderecoVO();
+
+	#{detalhesPaginasBean.pathProjeto}

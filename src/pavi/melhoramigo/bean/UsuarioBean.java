@@ -4,19 +4,18 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 import org.primefaces.context.RequestContext;
 
 import pavi.melhoramigo.bo.CadastroUsuarioBO;
+import pavi.melhoramigo.bo.LoginUsuarioBO;
 import pavi.melhoramigo.dao.UsuarioDAO;
 import pavi.melhoramigo.dao.conexao.ConexaoBase;
 import pavi.melhoramigo.vo.UsuarioVO;
 
 @ManagedBean
-@SessionScoped
 public class UsuarioBean extends ConexaoBase {
 	private UsuarioVO usuarioVO = new UsuarioVO();	
 	private String senha2;
@@ -37,11 +36,6 @@ public class UsuarioBean extends ConexaoBase {
 		this.senha2 = senha2;
 	}
 	
-	public void limpar() {
-		this.usuarioVO = new UsuarioVO();
-		senha2 = null;
-	}
-	
 	public void cadastrar_usuario() {
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		RequestContext requestContext = RequestContext.getCurrentInstance();
@@ -60,7 +54,6 @@ public class UsuarioBean extends ConexaoBase {
 		} else if (!cadastro.verificaConfirmaSenha(this.usuarioVO.getSenha(), this.senha2)) {
 			requestContext.execute("alert('A confirmação de senha está diferente da senha!');");
 		} else {
-			
 			this.usuarioVO.setCpf(cadastro.formataCPF(this.usuarioVO.getCpf()));
 			this.usuarioVO.getEndereco().setCep(cadastro.formataCEP(this.usuarioVO.getEndereco().getCep()));
 	
@@ -68,14 +61,49 @@ public class UsuarioBean extends ConexaoBase {
 			
 			try {
 				usuarioDAO.criar(this.getConexao(), this.usuarioVO);
-				this.limpar();
-				
 				externalContext.redirect("login_usuario.xhtml?cadastro=ok");
 			} catch (SQLException e) { 
 				requestContext.execute("alert('Erro ao cadastrar o usuário: " + e.getMessage() + "');");
 			} catch (IOException e) {
 				requestContext.execute("alert('Erro ao redirecionar a página: " + e.getMessage() + "');");
 			}
+		}
+	}
+	
+	public void logar_usuario() {
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+		RequestContext requestContext = RequestContext.getCurrentInstance();
+		LoginUsuarioBO login = new LoginUsuarioBO();
+		
+		if (!login.verificaCadastro(this.getConexao(), this.usuarioVO.getEmail())) {
+			requestContext.execute("alert('Este endereço de email não está cadastrado!');");
+		} else if (!login.validaSenha(this.usuarioVO.getSenha())) {;
+			requestContext.execute("alert('A senha está INCORRETA!');");
+		} else if (login.isBan()) {
+			requestContext.execute("alert('Este usuário encontra-se BANIDO por tempo indeterminado!');");
+		} else {
+			externalContext.getSessionMap().put("email_usuario", login.getUsuarioParaLogin().getEmail());
+			externalContext.getSessionMap().put("id_usuario", login.getUsuarioParaLogin().getId_usuario());
+			externalContext.getSessionMap().put("nome_usuario", login.getUsuarioParaLogin().getNome());
+			externalContext.getSessionMap().put("nivel_usuario", login.getUsuarioParaLogin().getNivelUsuario());
+			
+			try {
+				externalContext.redirect("../index.xhtml");
+			} catch (IOException e) {
+				requestContext.execute("alert('Erro ao redirecionar a página: " + e.getMessage() + "');");
+			}
+		}
+	}
+	
+	public void deslogar_usuario() {
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+		RequestContext requestContext = RequestContext.getCurrentInstance();
+		externalContext.invalidateSession();
+		
+		try {
+			externalContext.redirect(externalContext.getRequestContextPath() + "/faces/index.xhtml");
+		} catch (IOException e) {
+			requestContext.execute("alert('Erro ao redirecionar a página: " + e.getMessage() + "');");
 		}
 	}
 }

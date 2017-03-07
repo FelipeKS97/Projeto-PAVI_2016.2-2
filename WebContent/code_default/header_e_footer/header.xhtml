@@ -9,20 +9,32 @@
 
 <h:body>
 	<ui:composition>
-		<p><h:link><h:graphicImage id="logoPrincipal" alt="Logo-ONG" value=" ${pageContext.request.contextPath}/../../../img/logo_melhor_amigo_BLUE.png"/></h:link></p>
+		<p><h:link outcome="#{detalhesPaginasBean.pathProjeto}/index.xhtml"><h:graphicImage id="logoPrincipal" alt="Logo-ONG" value="#{detalhesPaginasBean.pathProjeto}/img/logo_melhor_amigo_BLUE.png"/></h:link></p>
 		<div class="navbar navbar-inverse navbar-static-top">
 			<div class="navbar-inner">
 				<ul class="nav">
-					<li><h:link value="Início"/></li>
+					<li><h:link value="Início" outcome="#{detalhesPaginasBean.pathProjeto}/index.xhtml"/></li>
 					<li><h:link value="Cães" /></li>
 					<li><h:link value="Adoção" /></li>
 					<li><h:link value="Apadrinhamento" /></li>
 					<li><h:link value="Voluntários" /></li>
 					<li><h:link value="Doações" /></li>
 				</ul>
-				<ul class="nav pull-right">
-	
-				</ul>
+				<h:panelGroup rendered="${detalhesPaginasBean.controle_login.tipoUsarioAtual.equals('anonimo')}">
+					<ui:include src="header_usuarios/anonimo.xhtml" />
+				</h:panelGroup>
+				<h:panelGroup rendered="${detalhesPaginasBean.controle_login.tipoUsarioAtual.equals('comum')}">
+					<ui:include src="header_usuarios/comum_adotante.xhtml" />
+				</h:panelGroup>
+				<h:panelGroup rendered="${detalhesPaginasBean.controle_login.tipoUsarioAtual.equals('padrinho')}">
+					<ui:include src="header_usuarios/padrinho.xhtml" />
+				</h:panelGroup>
+				<h:panelGroup rendered="${detalhesPaginasBean.controle_login.tipoUsarioAtual.equals('voluntario')}">
+					<ui:include src="header_usuarios/voluntario.xhtml" />
+				</h:panelGroup>
+				<h:panelGroup rendered="${detalhesPaginasBean.controle_login.tipoUsarioAtual.equals('admin')}">
+					<ui:include src="header_usuarios/admin.xhtml" />
+				</h:panelGroup>
 			</div>
 		</div>
 	</ui:composition>

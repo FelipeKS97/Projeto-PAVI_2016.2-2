@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<h:body>
+	<ui:composition>
+		<h:form>
+			<ul class="nav pull-right">
+				<li id="fat-menu" class="dropdown">
+				    <a href="#" id="drop3" role="button" class="dropdown-toggle" data-toggle="dropdown"><h:outputText escape="false" value="#{detalhesPaginasBean.controle_login.primeiroNome_usuario}"/> <b class="caret"></b></a>
+				    <ul class="dropdown-menu" role="menu" aria-labelledby="drop3">
+				        <li><h:link value="Meus Dados" tabindex="-1"/></li>
+				        <li class="divider"></li>
+				        <li><h:link value="Pedidos de Adoção" tabindex="-1"/></li>
+				        <li><h:link value="Pedidos p/voluntariar" tabindex="-1"/></li>
+				        <li class="divider"></li>
+				        <li><h:link value="Controle de Cães" tabindex="-1"/></li>
+				        <li><h:link value="Controle de Usuários" tabindex="-1"/></li>
+				        <li class="divider"></li>
+				        <li><h:commandLink action="#{usuarioBean.deslogar_usuario()}" value="Sair" tabindex="-1"/></li>
+				    </ul>
+				</li>
+			</ul>
+		</h:form>
+	</ui:composition>
+</h:body>
+</html>

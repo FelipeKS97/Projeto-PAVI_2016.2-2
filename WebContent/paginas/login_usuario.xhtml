@@ -53,14 +53,14 @@
                         </div>
                         <div class="control-group">
                             <div class="controls">
-                                <h:commandButton class="btn" value="Entrar"/>
+                                <h:commandButton class="btn" value="Entrar" action="#{usuarioBean.logar_usuario()}"/>
                             </div>
                         </div>
                     </fieldset>
                 </h:form>
 
                 <div id="ajuda" class="center">
-                    <p><a href="#">Esqueci a senha</a> | <a href="cadastro_usuario.xhtml" target="_BLANK">Cadastre-se</a></p>
+                    <p><h:link value="Esqueci a senha"/> | <h:link value="Cadastre-se" outcome="cadastro_usuario.xhtml"/></p>
                 </div>
             </article>
 
