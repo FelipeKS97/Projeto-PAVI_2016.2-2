@@ -59,6 +59,7 @@ public class UsuarioDAO {
 	public void updateUsuario(Connection conexao, UsuarioVO usuario) throws SQLException {
 		String sql = "update t_usuario set nome='" + usuario.getNome() + "', idade='" + usuario.getIdade()
 				+ "', telefone='" + usuario.getTelefone() + "' where id_usuario='" + usuario.getId_usuario() + "'";
+		
 		try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
 			stmt.executeUpdate();
 		} catch (SQLException e) {

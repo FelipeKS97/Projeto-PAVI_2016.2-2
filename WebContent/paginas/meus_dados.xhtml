@@ -8,7 +8,7 @@
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 	<h:head> 	
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
-		<title>Cadastro | Melhor Amigo</title>
+		<title>Meus Dados | Melhor Amigo</title>
 		
 		<!-- Bootstrap -->
         <link href="../bootstrap/css/bootstrap.css" rel="stylesheet" media="screen" />
@@ -16,18 +16,30 @@
         <link rel="stylesheet" type="text/css" href="../css/layout_default.css" />
         <link rel="stylesheet" type="text/css" href="../css/cadastro_usuario.css" />
     </h:head>
+    
+    <f:event listener="#{usuarioBean.get_dados_usuario}" type="preRenderView" />
+    
     <h:body> 
-        <div class="container mycontainer">
+        <div class="container mycontainer">        
             <header>
             	<ui:include src="../code_default/header_e_footer/header.xhtml" />        
             </header>
 
-            <article>            
+            <article>
+            	<f:metadata>  
+			        <f:viewParam name="func_edit" value="#{detalhesPaginasBean.p_func_edit.parametro_get}" />
+			        <f:viewParam name="func_senha" value="#{detalhesPaginasBean.p_func_senha.parametro_get}" />
+			    </f:metadata>
+			    
+			    <h:outputText escape="false" value="#{detalhesPaginasBean.p_func_edit.cod_para_inserir}" rendered="${detalhesPaginasBean.p_func_edit.parametro_get.equals('ok')}"/>
+			    <h:outputText escape="false" value="#{detalhesPaginasBean.p_func_senha.cod_para_inserir}" rendered="${detalhesPaginasBean.p_func_senha.parametro_get.equals('ok')}"/>
+                   
                 <div class="cabecalho center">
-                    <h2>Cadastre-se</h2>
+                    <h2>Meus Dados</h2>
                 </div>
                 
-                <h:form id="formCadastro" class="form-horizontal">
+                <h:form id="formDados" class="form-horizontal">
+                	<h:inputHidden value="#{usuarioBean.usuarioVO.id_usuario}"/>
                     <fieldset>
                         <legend>Dados Pessoais</legend>
                         <div class="campo">
@@ -41,8 +53,8 @@
                         <div class="campo">
                         	<h:outputLabel class="control-label" value="CPF:"/>
                             <div class="controls">
-                               <p:inputMask class="input-medium" type="text" name="cpf" required="true" value="#{usuarioBean.usuarioVO.cpf}"
-                                	requiredMessage="Informe o CPF!" id="cpf" mask="999.999.999-99"/>
+                                <p:inputMask class="input-medium" type="text" name="cpf" required="true" value="#{usuarioBean.usuarioVO.cpf}"
+                                	requiredMessage="Informe o CPF!" id="cpf" mask="999.999.999-99" disabled="true"/>
                                 <h:message for="cpf" class="msgErro" style="color: red; margin-left: 1%; font-style: italic"/>
                             </div>
                         </div>
@@ -134,43 +146,22 @@
                         </div>
                     </fieldset>
                     <fieldset>
-                        <legend>Dados de Login</legend>
-                        <div class="alert alert-info fade in">
-                            <button type='button' class='close' data-dismiss='alert'>×</button>
-                            <strong>Atenção!</strong> Insira um email válido e a senha deverá ter no mínimo 6 caracteres
-                        </div>
+                        <legend>Dados de Login<h:link class="btn pull-right" value="Alterar Senha"/></legend>
                         <div class="campo">
                             <h:outputLabel class="control-label" value="Email:"/>
                             <div class="controls">
                                 <h:inputText name="email" type="email" required="true" value="#{usuarioBean.usuarioVO.email}"
-                                	requiredMessage="Informe o Email!" id="email"/>
+                                	requiredMessage="Informe o Email!" id="email" disabled="true"/>
                                 <h:message for="email" class="msgErro" style="color: red; margin-left: 1%; font-style: italic"/>
-                            </div>
-                        </div>
-                        <div class="campo">
-                            <h:outputLabel class="control-label" value="Senha:"/>
-                            <div class="controls">
-                                <h:inputSecret class="input-medium" type="password" name="senha1" required="true" value="#{usuarioBean.usuarioVO.senha}"
-                                	requiredMessage="Informe a Senha!" id="senha1"/>
-                                <h:message for="senha1" class="msgErro" style="color: red; margin-left: 1%; font-style: italic"/>
-                            </div>
-                        </div>
-                        <div class="campo">
-                            <h:outputLabel class="control-label" value="Confirme a senha:"/>
-                            <div class="controls">
-                                <h:inputSecret class="input-medium" type="password" name="senha2" required="true" value="#{usuarioBean.senha2}"
-                                	requiredMessage="Confirme a Senha!" id="senha2"/>
-                                <h:message for="senha2" class="msgErro" style="color: red; margin-left: 1%; font-style: italic"/>
                             </div>
                         </div>
                     </fieldset>
                     <div class="form-actions">
-                        <h:commandButton class="btn btn-primary" value="Cadastrar" action="#{usuarioBean.cadastrar_usuario()}"/>
-                        <h:commandButton type="reset" class="btn" value="Limpar" style="margin-left: 1%"/>
+                        <h:commandButton class="btn btn-primary" value="Salvar Alterações" action="#{usuarioBean.alterar_dados_usuario()}"/>
                     </div>
                 </h:form>
             </article>
-
+		
             <footer> 
 				<ui:include src="../code_default/header_e_footer/footer.xhtml" /> 
             </footer> 

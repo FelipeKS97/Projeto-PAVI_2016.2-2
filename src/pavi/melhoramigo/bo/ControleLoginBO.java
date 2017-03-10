@@ -4,18 +4,6 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
 public class ControleLoginBO {
-	private String tipoUsarioAtual;
-	
-	/*UsuarioVO usuario_atual = new UsuarioVO();
-
-	public UsuarioVO getUsuario_atual() {
-		return usuario_atual;
-	}
-
-	public void setUsuario_atual(UsuarioVO usuario_atual) {
-		this.usuario_atual = usuario_atual;
-	}*/
-
 	public String getPrimeiroNome_usuario() {
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		
@@ -35,6 +23,8 @@ public class ControleLoginBO {
 	public String getTipoUsarioAtual() {
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		
+		String tipoUsarioAtual = null;
+		
 		if (!externalContext.getSessionMap().containsKey("nivel_usuario")) {
 			tipoUsarioAtual = "anonimo";
 		} else if(externalContext.getSessionMap().get("nivel_usuario").equals(0)) {
@@ -47,7 +37,7 @@ public class ControleLoginBO {
 			tipoUsarioAtual = "admin";
 		}
 		
-		return this.tipoUsarioAtual;
+		return tipoUsarioAtual;
 	}
 	
 	public boolean isSessaoAtiva() {

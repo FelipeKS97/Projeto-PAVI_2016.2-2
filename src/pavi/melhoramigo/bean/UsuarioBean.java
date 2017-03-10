@@ -54,9 +54,6 @@ public class UsuarioBean extends ConexaoBase {
 		} else if (!cadastro.verificaConfirmaSenha(this.usuarioVO.getSenha(), this.senha2)) {
 			requestContext.execute("alert('A confirmação de senha está diferente da senha!');");
 		} else {
-			this.usuarioVO.setCpf(cadastro.formataCPF(this.usuarioVO.getCpf()));
-			this.usuarioVO.getEndereco().setCep(cadastro.formataCEP(this.usuarioVO.getEndereco().getCep()));
-	
 			UsuarioDAO usuarioDAO = new UsuarioDAO(); 
 			
 			try {
@@ -104,6 +101,37 @@ public class UsuarioBean extends ConexaoBase {
 			externalContext.redirect(externalContext.getRequestContextPath() + "/faces/index.xhtml");
 		} catch (IOException e) {
 			requestContext.execute("alert('Erro ao redirecionar a página: " + e.getMessage() + "');");
+		}
+	}
+	
+	public void get_dados_usuario() {
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		
+		String email = (String)externalContext.getSessionMap().get("email_usuario");		
+		this.usuarioVO = usuarioDAO.buscaUsuario(this.getConexao(), email);
+	}
+	
+	public void alterar_dados_usuario() {
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+		RequestContext requestContext = RequestContext.getCurrentInstance();
+		CadastroUsuarioBO recadastro = new CadastroUsuarioBO();		
+		
+		if (!recadastro.verificaIdade(this.usuarioVO.getIdade())) {
+			requestContext.execute("alert('Idade inválida, você precisa ter mais de 18 anos!');");
+		} else if (!recadastro.isCEP(this.usuarioVO.getEndereco().getCep())) {
+			requestContext.execute("alert('Este CEP está incorreto!');");
+		} else {	
+			UsuarioDAO usuarioDAO = new UsuarioDAO(); 		
+			
+			try {
+				usuarioDAO.updateUsuario(this.getConexao(), this.usuarioVO);
+				externalContext.redirect("meus_dados.xhtml?func_edit=ok");
+			} catch (SQLException e) { 
+				requestContext.execute("alert('Erro ao atualizar os dados do usuário: " + e.getMessage() + "');");
+			} catch (IOException e) {
+				requestContext.execute("alert('Erro ao redirecionar a página: " + e.getMessage() + "');");
+			}
 		}
 	}
 }
