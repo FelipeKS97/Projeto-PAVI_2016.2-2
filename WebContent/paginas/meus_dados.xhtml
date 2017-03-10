@@ -7,28 +7,28 @@
     xmlns:p="http://primefaces.org/ui"
     xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 	<h:head> 	
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
 		<title>Meus Dados | Melhor Amigo</title>
 		
 		<!-- Bootstrap -->
-        <link href="../bootstrap/css/bootstrap.css" rel="stylesheet" media="screen" />
+        <link href="../bootstrap/css/bootstrap.css" rel="stylesheet" media="screen"/>
 
-        <link rel="stylesheet" type="text/css" href="../css/layout_default.css" />
-        <link rel="stylesheet" type="text/css" href="../css/cadastro_usuario.css" />
+        <link rel="stylesheet" type="text/css" href="../css/layout_default.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/cadastro_usuario.css"/>
+       
+    	<f:event listener="#{usuarioBean.getDadosUsuarioOuRedirect}" type="preRenderView"/>
     </h:head>
-    
-    <f:event listener="#{usuarioBean.get_dados_usuario}" type="preRenderView" />
-    
+        
     <h:body> 
         <div class="container mycontainer">        
             <header>
-            	<ui:include src="../code_default/header_e_footer/header.xhtml" />        
+            	<ui:include src="../code_default/header_e_footer/header.xhtml"/>        
             </header>
 
             <article>
             	<f:metadata>  
-			        <f:viewParam name="func_edit" value="#{detalhesPaginasBean.p_func_edit.parametro_get}" />
-			        <f:viewParam name="func_senha" value="#{detalhesPaginasBean.p_func_senha.parametro_get}" />
+			        <f:viewParam name="func_edit" value="#{detalhesPaginasBean.p_func_edit.parametro_get}"/>
+			        <f:viewParam name="func_senha" value="#{detalhesPaginasBean.p_func_senha.parametro_get}"/>
 			    </f:metadata>
 			    
 			    <h:outputText escape="false" value="#{detalhesPaginasBean.p_func_edit.cod_para_inserir}" rendered="${detalhesPaginasBean.p_func_edit.parametro_get.equals('ok')}"/>

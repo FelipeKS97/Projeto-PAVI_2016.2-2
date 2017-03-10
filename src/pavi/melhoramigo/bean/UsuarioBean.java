@@ -2,6 +2,7 @@ package pavi.melhoramigo.bean;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
@@ -78,7 +79,7 @@ public class UsuarioBean extends ConexaoBase {
 			requestContext.execute("alert('A senha está INCORRETA!');");
 		} else if (login.isBan()) {
 			requestContext.execute("alert('Este usuário encontra-se BANIDO por tempo indeterminado!');");
-		} else {
+		} else {			
 			externalContext.getSessionMap().put("email_usuario", login.getUsuarioParaLogin().getEmail());
 			externalContext.getSessionMap().put("id_usuario", login.getUsuarioParaLogin().getId_usuario());
 			externalContext.getSessionMap().put("nome_usuario", login.getUsuarioParaLogin().getNome());
@@ -95,7 +96,9 @@ public class UsuarioBean extends ConexaoBase {
 	public void deslogar_usuario() {
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		RequestContext requestContext = RequestContext.getCurrentInstance();
-		externalContext.invalidateSession();
+		
+		externalContext.getSessionMap().clear();
+		externalContext.invalidateSession();		
 		
 		try {
 			externalContext.redirect(externalContext.getRequestContextPath() + "/faces/index.xhtml");
@@ -104,12 +107,23 @@ public class UsuarioBean extends ConexaoBase {
 		}
 	}
 	
-	public void get_dados_usuario() {
+	public void getDadosUsuarioOuRedirect() {
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-		UsuarioDAO usuarioDAO = new UsuarioDAO();
+		Map<String, Object> sessionMap = externalContext.getSessionMap();
 		
-		String email = (String)externalContext.getSessionMap().get("email_usuario");		
-		this.usuarioVO = usuarioDAO.buscaUsuario(this.getConexao(), email);
+		if (!sessionMap.isEmpty()) {
+			UsuarioDAO usuarioDAO = new UsuarioDAO();
+			
+			String email = (String)sessionMap.get("email_usuario");		
+			this.usuarioVO = usuarioDAO.buscaUsuario(this.getConexao(), email);
+		} else {
+			try {
+				externalContext.redirect(externalContext.getRequestContextPath() + "/faces/index.xhtml");
+			} catch (IOException e) {
+				RequestContext requestContext = RequestContext.getCurrentInstance();
+				requestContext.execute("alert('Erro ao redirecionar a página: " + e.getMessage() + "');");
+			}
+		}
 	}
 	
 	public void alterar_dados_usuario() {
