@@ -97,7 +97,7 @@ public class UsuarioBean extends ConexaoBase {
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		RequestContext requestContext = RequestContext.getCurrentInstance();
 		
-		externalContext.getSessionMap().clear();
+		//externalContext.getSessionMap().clear();
 		externalContext.invalidateSession();		
 		
 		try {
