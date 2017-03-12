@@ -179,14 +179,7 @@ INSERT INTO `t_cao` (`id_cao`, `nome`, `genero`, `idade`, `porte`, `src_imagem`)
 (13, 'Snoop', 'Macho', 3, 'pequeno', 'img/caes/cao_13.jpg'),
 (14, 'Zizi', 'Fêmea', 1, 'médio', 'img/caes/cao_14.jpg'),
 (15, 'Maomé', 'Macho', 3, 'pequeno', 'img/caes/cao_15.jpg'),
-(16, 'Zeca', 'Macho', 3, 'pequeno', 'img/caes/cao_16.jpg'),
-(17, 'Sansão', 'Macho', 3, 'pequeno', 'img/caes/cao_17.jpg'),
-(18, 'Brigite', 'Fêmea', 3, 'pequeno', 'img/caes/cao_18.jpg'),
-(19, 'Paola', 'Fêmea', 3, 'pequeno', 'img/caes/cao_19.jpg'),
-(20, 'Santo', 'Macho', 3, 'grande', 'img/caes/cao_20.jpg'),
-(21, 'Bruce', 'Macho', 3, 'pequeno', 'img/caes/cao_21.jpg'),
-(22, 'Jeremias', 'Macho', 3, 'pequeno', 'img/caes/cao_22.jpg'),
-(23, 'Vilma', 'Fêmea', 3, 'pequeno', 'img/caes/cao_23.jpg');
+(16, 'Zeca', 'Macho', 3, 'pequeno', 'img/caes/cao_16.jpg');
 
 INSERT INTO `t_usuario` (`id_usuario`, `email`, `senha`, `nome`, `cpf`, `idade`, `telefone`, `nivel_usuario`) VALUES
 (1, 'adotante@pavi.com', '1234qwer', 'Comum/Adotante', '886.006.696-42', 18, '82999998888', 0),

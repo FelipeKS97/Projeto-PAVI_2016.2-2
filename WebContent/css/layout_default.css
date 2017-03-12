@@ -4,7 +4,7 @@ body{
 }
 
 .mycontainer{
-    background-color: white;
+    background-color: white /*rgba(255, 255, 255, .7)*/;
     width: 960px;
 }
 

@@ -18,6 +18,7 @@ import pavi.melhoramigo.vo.UsuarioVO;
 
 @ManagedBean
 public class UsuarioBean extends ConexaoBase {
+	private UsuarioDAO usuarioDAO = new UsuarioDAO();
 	private UsuarioVO usuarioVO = new UsuarioVO();	
 	private String senha2;
 
@@ -55,8 +56,6 @@ public class UsuarioBean extends ConexaoBase {
 		} else if (!cadastro.verificaConfirmaSenha(this.usuarioVO.getSenha(), this.senha2)) {
 			requestContext.execute("alert('A confirmação de senha está diferente da senha!');");
 		} else {
-			UsuarioDAO usuarioDAO = new UsuarioDAO(); 
-			
 			try {
 				usuarioDAO.criar(this.getConexao(), this.usuarioVO);
 				externalContext.redirect("login_usuario.xhtml?cadastro=ok");
@@ -107,22 +106,13 @@ public class UsuarioBean extends ConexaoBase {
 		}
 	}
 	
-	public void getDadosUsuarioOuRedirect() {
+	public void getDadosUsuario() {
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		Map<String, Object> sessionMap = externalContext.getSessionMap();
 		
 		if (!sessionMap.isEmpty()) {
-			UsuarioDAO usuarioDAO = new UsuarioDAO();
-			
 			String email = (String)sessionMap.get("email_usuario");		
 			this.usuarioVO = usuarioDAO.buscaUsuario(this.getConexao(), email);
-		} else {
-			try {
-				externalContext.redirect(externalContext.getRequestContextPath() + "/faces/index.xhtml");
-			} catch (IOException e) {
-				RequestContext requestContext = RequestContext.getCurrentInstance();
-				requestContext.execute("alert('Erro ao redirecionar a página: " + e.getMessage() + "');");
-			}
 		}
 	}
 	
@@ -136,8 +126,6 @@ public class UsuarioBean extends ConexaoBase {
 		} else if (!recadastro.isCEP(this.usuarioVO.getEndereco().getCep())) {
 			requestContext.execute("alert('Este CEP está incorreto!');");
 		} else {	
-			UsuarioDAO usuarioDAO = new UsuarioDAO(); 		
-			
 			try {
 				usuarioDAO.updateUsuario(this.getConexao(), this.usuarioVO);
 				externalContext.redirect("meus_dados.xhtml?func_edit=ok");

@@ -13,6 +13,7 @@ public class DetalhesPaginasBean {
 	private ParametroGetVO p_cadastro = new ParametroGetVO();
 	private ParametroGetVO p_func_edit = new ParametroGetVO();
 	private ParametroGetVO p_func_senha = new ParametroGetVO();
+	private String encerraThumbnailsListaCaes = "</ul><ul class='thumbnails'>";
 	
 	public DetalhesPaginasBean() {
 		this.p_cadastro.setCod_para_inserir("<div class='alert alert-success fade in'>"
@@ -66,5 +67,13 @@ public class DetalhesPaginasBean {
 	public String getPathProjeto() {
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
 		return externalContext.getRequestServletPath();
+	}
+
+	public String getEncerraThumbnailsListaCaes() {
+		return encerraThumbnailsListaCaes;
+	}
+
+	public void setEncerraThumbnailsListaCaes(String encerraThumbnailsListaCaes) {
+		this.encerraThumbnailsListaCaes = encerraThumbnailsListaCaes;
 	}
 }
