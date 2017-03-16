@@ -2,14 +2,14 @@
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"  
-    xmlns:h="http://java.sun.com/jsf/html"  
-    xmlns:f="http://java.sun.com/jsf/core"  
-    xmlns:p="http://primefaces.org/ui"
-    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-	<h:head> 	
-		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
-		<title>Melhor Amigo</title>
-        
+      xmlns:h="http://java.sun.com/jsf/html"  
+      xmlns:f="http://java.sun.com/jsf/core"  
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head> 	
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+        <title>Melhor Amigo</title>
+
         <!-- Bootstrap -->
         <link href="../bootstrap/css/bootstrap.css" rel="stylesheet" media="screen"/>
 
@@ -18,7 +18,7 @@
     <h:body> 
         <div class="container mycontainer">
             <header>
-            	<ui:include src="code_default/header_e_footer/header.xhtml" />        
+                <ui:include src="code_default/header_e_footer/header.xhtml" />        
             </header>
 
             <article>
@@ -26,7 +26,7 @@
                     <!-- Itens de carousel -->
                     <div class="carousel-inner">
                         <div class="active item">
-                        	<h:link outcome="#{detalhesPaginasBean.pathProjeto}/paginas/lista_caes.xhtml"><h:graphicImage alt="..." value="img/imgs_site/img_2.jpg"/></h:link>
+                            <h:link outcome="#{detalhesPaginasBean.pathProjeto}/paginas/lista_caes.xhtml"><h:graphicImage alt="..." value="img/imgs_site/img_2.jpg"/></h:link>
                             <div class="carousel-caption">
                                 <h:link outcome="#{detalhesPaginasBean.pathProjeto}/paginas/lista_caes.xhtml">
                                     <h4>Conheça nossos cãezinhos!</h4>
@@ -35,7 +35,7 @@
                             </div>
                         </div>
                         <div class="item">
-                        	<h:link><h:graphicImage alt="..." value="img/imgs_site/img_12.jpg"/></h:link>
+                            <h:link><h:graphicImage alt="..." value="img/imgs_site/img_12.jpg"/></h:link>
                             <div class="carousel-caption">
                                 <h:link>
                                     <h4>Faça uma doação!</h4>
@@ -44,7 +44,7 @@
                             </div>
                         </div>
                         <div class="item">
-                        	<h:link><h:graphicImage alt="..." value="img/imgs_site/img_10.jpg"/></h:link>
+                            <h:link><h:graphicImage alt="..." value="img/imgs_site/img_10.jpg"/></h:link>
                             <div class="carousel-caption">
                                 <h:link>
                                     <h4>Denuncie maus-tratos, isso é crime!</h4>
@@ -79,7 +79,7 @@
                         <li class="span4">
                             <h:link>
                                 <div class="thumbnail mythumbnail">
-                                	<h:graphicImage alt="..." value="img/imgs_site/img_1.jpg"/>
+                                    <h:graphicImage alt="..." value="img/imgs_site/img_1.jpg"/>
                                     <div class="caption">
                                         <h3 class="center">Apadrinhe</h3>
                                         <p class="center">Apadrinhe um de nossos cãezinhos e seja nosso parceiro!</p>
@@ -90,7 +90,7 @@
                         <li class="span4">
                             <h:link>
                                 <div class="thumbnail mythumbnail">
-                                	<h:graphicImage alt="..." value="img/imgs_site/img_9.jpg"/>
+                                    <h:graphicImage alt="..." value="img/imgs_site/img_9.jpg"/>
                                     <div class="caption">
                                         <h3 class="center">Doe</h3>
                                         <p class="center">Ajude-nos!<br/>Qualquer valor será bem vindo!</p>
@@ -103,7 +103,7 @@
             </article>
 
             <footer> 
-				<ui:include src="code_default/header_e_footer/footer.xhtml" /> 
+                <ui:include src="code_default/header_e_footer/footer.xhtml" /> 
             </footer> 
         </div>
 
