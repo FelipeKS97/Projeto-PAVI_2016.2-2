@@ -97,4 +97,17 @@ public class CaoBean extends ConexaoBase{
 			}
 		}
 	}
+	
+	public void redirecionaSeNenhumCaoSelecionado() {
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+		RequestContext requestContext = RequestContext.getCurrentInstance();
+		
+		if (this.caoVO.getId_cao() == 0) {
+			try {
+				externalContext.redirect(externalContext.getRequestContextPath() + "/faces/paginas/lista_caes.xhtml");
+			} catch (IOException e) {
+				requestContext.execute("alert('Erro ao redirecionar a página: " + e.getMessage() + "');");
+			}
+		}
+	}
 }

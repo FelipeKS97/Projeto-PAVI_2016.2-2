@@ -1,8 +1,12 @@
 package pavi.melhoramigo.bean;
 
+import java.io.IOException;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+
+import org.primefaces.context.RequestContext;
 
 import pavi.melhoramigo.bo.ControleLoginBO;
 import pavi.melhoramigo.vo.ParametroGetVO;
@@ -122,5 +126,31 @@ public class DetalhesPaginasBean {
 
 	public void setEncerraThumbnailsListaCaes(String encerraThumbnailsListaCaes) {
 		this.encerraThumbnailsListaCaes = encerraThumbnailsListaCaes;
+	}
+	
+	public void redirecionaSeAnonimo() {
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+		RequestContext requestContext = RequestContext.getCurrentInstance();
+		
+		if (!this.controle_login.isSessaoAtiva()) {
+			try {
+				externalContext.redirect(externalContext.getRequestContextPath() + "/faces/index.xhtml");
+			} catch (IOException e) {
+				requestContext.execute("alert('Erro ao redirecionar a página: " + e.getMessage() + "');");
+			}
+		}
+	}
+	
+	public void redirecionaSeNaoAnonimo() {
+		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+		RequestContext requestContext = RequestContext.getCurrentInstance();
+		
+		if (this.controle_login.isSessaoAtiva()) {
+			try {
+				externalContext.redirect(externalContext.getRequestContextPath() + "/faces/index.xhtml");
+			} catch (IOException e) {
+				requestContext.execute("alert('Erro ao redirecionar a página: " + e.getMessage() + "');");
+			}
+		}
 	}
 }

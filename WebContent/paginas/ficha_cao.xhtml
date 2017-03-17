@@ -12,6 +12,7 @@
 	        <f:viewParam name="envio" value="#{detalhesPaginasBean.p_envioSolicit.parametro_get}"/>
 	    </f:metadata>
 	    
+	    <f:event listener="#{caoBean.redirecionaSeNenhumCaoSelecionado}" type="preRenderView"/>
 	    <f:event listener="#{caoBean.getDadosCao}" type="preRenderView"/>
 	    
 		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
