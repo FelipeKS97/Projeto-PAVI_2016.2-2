@@ -13,7 +13,17 @@ public class DetalhesPaginasBean {
 	private ParametroGetVO p_cadastro = new ParametroGetVO();
 	private ParametroGetVO p_func_edit = new ParametroGetVO();
 	private ParametroGetVO p_func_senha = new ParametroGetVO();
+	private ParametroGetVO p_envioSolicit = new ParametroGetVO();
+	
 	private String encerraThumbnailsListaCaes = "</ul><ul class='thumbnails'>";
+	
+	private String alertVerificaLoginFichaCao = "<div class='alert alert-info fade in'>"
+					                          + "<button type='button' class='close' data-dismiss='alert'>×</button>"
+					                          + "<strong>Quer adotar este cãozinho?</strong> Faça o Login ou Cadastre-se para continuar!"
+					                          + "</div>";
+	
+	private String spanCaoDisponivel = "<p class='center'><span class='label label-success'>ESTÁ DISPONÍVEL</span></p>";
+	private String spanCaoNaoDisponivel = "<p class='center'><span class='label label-important'>NÃO ESTÁ DISPONÍVEL</span></p>";
 	
 	public DetalhesPaginasBean() {
 		this.p_cadastro.setCod_para_inserir("<div class='alert alert-success fade in'>"
@@ -30,8 +40,45 @@ public class DetalhesPaginasBean {
 								  	 	    + "<button type='button' class='close' data-dismiss='alert'>×</button>"
 								 		    + "<strong>Pronto!</strong> A sua senha foi alterada com sucesso!"
 								  		    + "</div>");
+		
+		this.p_envioSolicit.setCod_para_inserir("<div class='alert alert-success fade in'>"
+								  	 	      + "<button type='button' class='close' data-dismiss='alert'>×</button>"
+								 		      + "<strong>Recebemos a sua mensagem!</strong> Seus dados serão analisados e entraremos em contato com você em breve!"
+								  		      + "</div>");
 	}
 	
+	public ParametroGetVO getP_envioSolicit() {
+		return p_envioSolicit;
+	}
+
+	public void setP_envioSolicit(ParametroGetVO p_envioSolicit) {
+		this.p_envioSolicit = p_envioSolicit;
+	}
+
+	public String getSpanCaoDisponivel() {
+		return spanCaoDisponivel;
+	}
+
+	public void setSpanCaoDisponivel(String spanCaoDisponivel) {
+		this.spanCaoDisponivel = spanCaoDisponivel;
+	}
+
+	public String getSpanCaoNaoDisponivel() {
+		return spanCaoNaoDisponivel;
+	}
+
+	public void setSpanCaoNaoDisponivel(String spanCaoNaoDisponivel) {
+		this.spanCaoNaoDisponivel = spanCaoNaoDisponivel;
+	}
+
+	public String getAlertVerificaLoginFichaCao() {
+		return alertVerificaLoginFichaCao;
+	}
+
+	public void setAlertVerificaLoginFichaCao(String alertVerificaLoginFichaCao) {
+		this.alertVerificaLoginFichaCao = alertVerificaLoginFichaCao;
+	}
+
 	public ParametroGetVO getP_func_senha() {
 		return p_func_senha;
 	}

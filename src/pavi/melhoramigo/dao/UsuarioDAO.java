@@ -13,6 +13,7 @@ public class UsuarioDAO {
 
 	public void criar(Connection conexao, UsuarioVO usuario) throws SQLException {
 		String sql = "insert into t_usuario (email, senha, nome, cpf, idade, telefone) values (?, ?, ?, ?, ?, ?)";
+		
 		try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
 			stmt.setString(1, usuario.getEmail());
 			stmt.setString(2, usuario.getSenha());
@@ -30,7 +31,7 @@ public class UsuarioDAO {
 		this.enderecoDAO.criar(conexao, usuario.getId_usuario(), usuario.getEndereco());
 	}
 
-	public UsuarioVO buscaUsuario(Connection conexao, String email) {
+	public UsuarioVO buscaUsuario(Connection conexao, String email) throws SQLException {
 		try (PreparedStatement stmt = conexao.prepareStatement("select * from t_usuario where email ='" + email + "'");
 				ResultSet rs = stmt.executeQuery();) {
 			if (rs.first()) {
@@ -49,10 +50,10 @@ public class UsuarioDAO {
 
 				return usuario;
 			}
-
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new SQLException("Erro: " + e.getMessage());
 		}
+		
 		return null;
 	}
 

@@ -26,7 +26,7 @@
 
             <article>
             	<div class="cabecalho center">
-                    <h2>Nossos Cãezinhos<br/><small>Todos estão disponíveis para adoção e você também pode apadrinhar um de nossos amiguinhos!</small></h2>
+                    <h2>Nossos Cãezinhos<br/><small>Todos estão disponíveis para adoção!</small></h2>
                 </div>
                 
                 <div>
@@ -35,7 +35,7 @@
 						
 		                	<ui:repeat var="cao" value="#{caoBean.listaCaes}" varStatus="status">
 								<li class='span4'>
-									<h:link>
+									<h:link outcome="ficha_cao.xhtml?id=#{cao.id_cao}">
 										<div class='thumbnail mythumbnail'>
 											<h:graphicImage value="../#{cao.src_imagem}" alt="#{cao.nome}" title="#{cao.nome}" class='imgCao'/>
 	                                        <div class='caption'>

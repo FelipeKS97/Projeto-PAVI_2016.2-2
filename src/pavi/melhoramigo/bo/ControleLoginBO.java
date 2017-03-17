@@ -40,8 +40,9 @@ public class ControleLoginBO {
 		return tipoUsarioAtual;
 	}
 	
-	public boolean isSessaoAtiva() { //Refazer...
+	public boolean isSessaoAtiva() {
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-		return !externalContext.getSessionMap().isEmpty();
+		
+		return externalContext.getSessionMap().containsKey("nivel_usuario");
 	}
 }

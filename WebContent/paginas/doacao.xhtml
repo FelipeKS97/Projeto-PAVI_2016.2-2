@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	<h:head> 	
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+		<title>Doação | Melhor Amigo</title>
+		
+		<!-- Bootstrap -->
+        <link href="../bootstrap/css/bootstrap.css" rel="stylesheet" media="screen" />
+
+        <link rel="stylesheet" type="text/css" href="../css/layout_default.css" />
+        <link rel="stylesheet" type="text/css" href="../css/doacao.css" />
+    </h:head>
+    <h:body> 
+        <div class="container mycontainer">
+            <header>
+            	<ui:include src="../code_default/header_e_footer/header.xhtml" />        
+            </header>
+
+            <article>
+
+                <div class="cabecalho center">
+                    <h2>Doações<br/><small>Ao doar, você ajuda nosso time a cuidar e tratar nossos amigos!</small></h2>
+                </div>
+
+                <p class="center">Ao doar para a ONG Melhor Amigo, você contribui diretamente no bem estar, alimentação e cuidados de animais que estão em busca de um novo lar, antes sem esperança. Com isso você nos dá uma oportunidade de arcar com o custo operacional de nossos amiguinhos em um lar transitório. Contribua com qualquer valor. </p>
+
+                <div class="well">
+                    <h:form class="form-inline center" id="formBoleto">
+                        <p>Basta inserir o valor desejado para gerar um boleto, fácil e rápido!" </p>
+                        <div class="input-prepend">
+                            <span class="add-on">R$</span>
+                            <input class="input-small" type="text" placeholder="Ex: 50,00" name="valor" required="true"></input>
+                        </div>
+                        <h:commandButton class="btn" value="Gerar Boleto"/>
+                    </h:form>
+                </div>
+
+                <div class="center">
+                    <img src="../img/quero_doar.png" alt="doar-com-PagSeguro" title="Doar com PagSeguro"/>
+                </div>
+            </article>
+
+            <footer> 
+				<ui:include src="../code_default/header_e_footer/footer.xhtml" /> 
+            </footer> 
+        </div>
+
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="../bootstrap/js/bootstrap.js"></script>
+    </h:body>
+</html>

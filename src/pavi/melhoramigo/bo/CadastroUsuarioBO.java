@@ -1,6 +1,7 @@
 package pavi.melhoramigo.bo;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.InputMismatchException;
 import java.util.regex.Pattern;
 
@@ -117,8 +118,12 @@ public class CadastroUsuarioBO {
 	public boolean verificaEmail (Connection conexao, String email) {
 		UsuarioDAO usuarioDAO = new UsuarioDAO();
 		
-		if (usuarioDAO.buscaUsuario(conexao, email) == null)
-			return true;
+		try {
+			if (usuarioDAO.buscaUsuario(conexao, email) == null)
+				return true;
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
 
 		return false;
 	}

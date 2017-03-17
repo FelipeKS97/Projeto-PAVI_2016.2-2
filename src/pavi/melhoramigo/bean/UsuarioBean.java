@@ -108,11 +108,17 @@ public class UsuarioBean extends ConexaoBase {
 	
 	public void getDadosUsuario() {
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
+		RequestContext requestContext = RequestContext.getCurrentInstance();
 		Map<String, Object> sessionMap = externalContext.getSessionMap();
 		
 		if (!sessionMap.isEmpty()) {
-			String email = (String)sessionMap.get("email_usuario");		
-			this.usuarioVO = usuarioDAO.buscaUsuario(this.getConexao(), email);
+			String email = (String)sessionMap.get("email_usuario");
+			
+			try {
+				this.usuarioVO = usuarioDAO.buscaUsuario(this.getConexao(), email);
+			} catch (SQLException e) {
+				requestContext.execute("alert('Erro ao buscar usuário: " + e.getMessage() + "');");
+			}
 		}
 	}
 	

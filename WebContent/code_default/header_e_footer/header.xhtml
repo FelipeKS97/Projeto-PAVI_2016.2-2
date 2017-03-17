@@ -16,9 +16,7 @@
 					<li><h:link value="Início" outcome="#{detalhesPaginasBean.pathProjeto}/index.xhtml"/></li>
 					<li><h:link value="Cães" outcome="#{detalhesPaginasBean.pathProjeto}/paginas/lista_caes.xhtml"/></li>
 					<li><h:link value="Adoção" /></li>
-					<li><h:link value="Apadrinhamento" /></li>
-					<li><h:link value="Voluntários" /></li>
-					<li><h:link value="Doações" /></li>
+					<li><h:link value="Doações" outcome="#{detalhesPaginasBean.pathProjeto}/paginas/doacao.xhtml"/></li>
 				</ul>
 				<h:panelGroup rendered="${detalhesPaginasBean.controle_login.tipoUsarioAtual.equals('anonimo')}">
 					<ui:include src="header_usuarios/anonimo.xhtml" />

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"  
+    xmlns:h="http://java.sun.com/jsf/html"  
+    xmlns:f="http://java.sun.com/jsf/core"  
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	<h:head>	 	
+		<f:metadata>  
+	        <f:viewParam name="id" value="#{caoBean.caoVO.id_cao}"/>
+	        <f:viewParam name="envio" value="#{detalhesPaginasBean.p_envioSolicit.parametro_get}"/>
+	    </f:metadata>
+	    
+	    <f:event listener="#{caoBean.getDadosCao}" type="preRenderView"/>
+	    
+		<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+		<title><h:outputText value="#{caoBean.caoVO.nome}"/> | Melhor Amigo</title>
+		
+		<!-- Bootstrap -->
+        <link href="../bootstrap/css/bootstrap.css" rel="stylesheet" media="screen"/>
+
+        <link rel="stylesheet" type="text/css" href="../css/layout_default.css"/>
+        <link rel="stylesheet" type="text/css" href="../css/ficha_cao.css"/>
+    </h:head>
+        
+    <h:body> 
+        <div class="container mycontainer">        
+            <header>
+            	<ui:include src="../code_default/header_e_footer/header.xhtml"/>        
+            </header>
+
+            <article>
+            	<ul class="breadcrumb">
+                	<li><h:link outcome="lista_caes.xhtml" value="Lista de Cães"/> <span class="divider">/</span></li>
+                	<li class="active"><h:outputText value="#{caoBean.caoVO.nome}"/></li>
+                </ul>
+                
+                <h:outputText escape="false" value="#{detalhesPaginasBean.alertVerificaLoginFichaCao}" rendered="#{!detalhesPaginasBean.controle_login.sessaoAtiva}"/>
+                <h:outputText escape="false" value="#{detalhesPaginasBean.p_envioSolicit.cod_para_inserir}" rendered="${detalhesPaginasBean.p_envioSolicit.parametro_get.equals('ok')}"/>
+                
+                <div class="row-fluid">
+                    <ul class="thumbnails">
+                        <li class="span4">
+                            <div class="thumbnail mythumbnail" id="ficha-cao">
+                                <h:graphicImage value="../#{caoBean.caoVO.src_imagem}" alt="#{cao.nome}" title="#{cao.nome}" class='imgCao'/>
+                                <div class="caption center">
+                                    <h3><h:outputText value="#{caoBean.caoVO.nome}"/></h3>
+                                    
+                                    <h:outputText escape="false" value="#{detalhesPaginasBean.spanCaoDisponivel}" rendered="${caoBean.caoVO.status_disponivel == 1}"/>
+                                    <h:outputText escape="false" value="#{detalhesPaginasBean.spanCaoNaoDisponivel}" rendered="${caoBean.caoVO.status_disponivel == 0}"/>
+                                    
+                                    <p><strong>Idade: <h:outputText value="#{caoBean.caoVO.idade}"/> Anos</strong></p>
+                                    <p><strong>Gênero: <h:outputText value="#{caoBean.caoVO.genero}"/></strong></p>
+                                    <p><strong>Porte <h:outputText value="#{caoBean.caoVO.porte}"/></strong></p>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="span4">
+                            <div class="thumbnail mythumbnail">
+                                <div class="caption center">
+                                    <h4>Quer adotá-lo?<br/><small>Escreva-nos!</small></h4>
+                                    <h:form id="formAdotar">
+                                        <h:inputHidden value="#{caoBean.caoVO.id_cao}" name="id_cao"/>
+                                        <h:inputHidden value="#{caoBean.caoVO.status_disponivel}" name="status_disp"/>
+                                        
+                                        <h:outputLabel value="Fale sobre você! Por que tem interesse em adotar este cãozinho?"/>
+                                        <h:inputTextarea value="#{caoBean.solicit.mensagem}" rows="8" class="input-block-level" name="mensagem" id="mensagem"/>
+                                        
+                                        <h:commandButton class="submitAdo btn" value="Adotar" action="#{caoBean.enviarSolicitacao()}"/>
+                                    </h:form>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </article>
+		
+            <footer> 
+				<ui:include src="../code_default/header_e_footer/footer.xhtml"/> 
+            </footer> 
+        </div>
+
+        <script src="http://code.jquery.com/jquery-latest.js"></script>
+        <script src="../bootstrap/js/bootstrap.js"></script>
+    </h:body>
+</html>
