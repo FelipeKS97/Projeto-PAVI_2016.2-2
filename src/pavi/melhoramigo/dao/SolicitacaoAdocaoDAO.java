@@ -2,7 +2,10 @@ package pavi.melhoramigo.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import pavi.melhoramigo.vo.SolicitacaoAdocaoVO;
 
@@ -19,6 +22,40 @@ public class SolicitacaoAdocaoDAO {
 		} catch (SQLException e) {
 			throw new SQLException("Erro: " + e.getMessage());
 		}
+	}
+	
+	public List<SolicitacaoAdocaoVO> selectListSolicitacoes(Connection conexao, String sql) throws SQLException{
+		List<SolicitacaoAdocaoVO> solicitacoes = new ArrayList<>();
+		
+		try (PreparedStatement stmt = conexao.prepareStatement(sql);
+				ResultSet rs = stmt.executeQuery();) {
+			if(rs.next()) {
+				do {
+					SolicitacaoAdocaoVO solicitacao = new SolicitacaoAdocaoVO();
+					
+					solicitacao.setCod_solicitacao(rs.getInt("cod_solicit"));
+					solicitacao.setId_adotante(rs.getInt("id_adotante"));
+					solicitacao.setId_cao(rs.getInt("id_cao"));
+					solicitacao.setMensagem(rs.getString("mensagem"));
+					solicitacao.setStatus_apr(rs.getInt("status_aprovacao"));
+					solicitacao.setData_solicit(rs.getString("data_solicit"));
+					
+					solicitacoes.add(solicitacao);
+				} while (rs.next());
+			}
+		} catch (SQLException e) {
+			throw new SQLException("Erro ao consultar: " + e.getMessage());
+		}
+		
+		return solicitacoes;
+	}
+	
+	public List<SolicitacaoAdocaoVO> listarPorStatus(Connection conexao, int status) throws SQLException {
+		String sql = "SELECT * FROM t_solicit_adocao WHERE status_aprovacao = " + status;
+		
+		List<SolicitacaoAdocaoVO> solicitacoes = this.selectListSolicitacoes(conexao, sql);
+		
+		return solicitacoes;
 	}
 	
 	/*public SolicitacaoAdocaoVO buscaSolicitacoes(Connection conexao, String sql) throws SQLException {

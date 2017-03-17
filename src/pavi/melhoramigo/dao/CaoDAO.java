@@ -13,9 +13,9 @@ public class CaoDAO {
 	public List<CaoVO> listarPorStatus(Connection conexao, int status) throws SQLException {
 		String sql = "SELECT * FROM t_cao WHERE t_cao.status_disponivel = " + status;
 		
-		List<CaoVO> alunos = this.selectListCaes(conexao, sql);
+		List<CaoVO> caes = this.selectListCaes(conexao, sql);
 		
-		return alunos;
+		return caes;
 	}
 	
 	public List<CaoVO> selectListCaes(Connection conexao, String sql) throws SQLException{
