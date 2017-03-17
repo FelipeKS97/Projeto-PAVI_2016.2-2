@@ -17,6 +17,7 @@
         <link rel="stylesheet" type="text/css" href="../../css/admin/pedidos_adocao_voluntario.css"/>
         
         <f:event listener="#{detalhesPaginasBean.redirecionaSeNaoAdmin}" type="preRenderView"/>
+        <f:event listener="#{adminBean.getSolicitacoesPendentes}" type="preRenderView"/>
     </h:head>
         
     <h:body> 
@@ -53,7 +54,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                        	
+                        	<ui:repeat var="solicitacao" value="#{adminBean.solicitacoes}" varStatus="status">
+                        		<tr>
+                                   <td><h:outputText value="#{solicitacao.cod_solicitacao}"/></td>
+                                   <td class='tdData'><h:outputText value="#{solicitacao.data_solicit}"/></td>
+                                   <td class='tdNomeCao'><h:outputText value="#{solicitacao.nome_cao}"/></td>
+                                   <td><h:outputText value="#{solicitacao.nome_adotante}"/></td>
+                                   <td class='tdMsg'><blockquote><h:outputText value="#{solicitacao.mensagem}"/></blockquote></td>
+                                   <td class='tdResp'>
+                                       <h:link outcome="pedidos_adocao.xhtml?func_sim=ok" class='btn btn-small btn-success pull-left' title='Aceitar Pedido'><i class='icon-ok icon-white'></i></h:link>
+                                       <h:link outcome="pedidos_adocao.xhtml?func_nao=ok" class='btn btn-small btn-danger pull-right' title='Recusar Pedido'><i class='icon-remove icon-white'></i></h:link>
+                                   </td>
+                               </tr>
+                        	</ui:repeat>
                         </tbody>
             		</table>
             	</fieldset>

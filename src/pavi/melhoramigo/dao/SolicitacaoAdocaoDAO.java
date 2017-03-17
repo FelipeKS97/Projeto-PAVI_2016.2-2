@@ -39,6 +39,8 @@ public class SolicitacaoAdocaoDAO {
 					solicitacao.setMensagem(rs.getString("mensagem"));
 					solicitacao.setStatus_apr(rs.getInt("status_aprovacao"));
 					solicitacao.setData_solicit(rs.getString("data_solicit"));
+					solicitacao.setNome_adotante(rs.getString("nome_adotante"));
+					solicitacao.setNome_cao(rs.getString("nome_cao"));
 					
 					solicitacoes.add(solicitacao);
 				} while (rs.next());
@@ -51,7 +53,7 @@ public class SolicitacaoAdocaoDAO {
 	}
 	
 	public List<SolicitacaoAdocaoVO> listarPorStatus(Connection conexao, int status) throws SQLException {
-		String sql = "SELECT * FROM t_solicit_adocao WHERE status_aprovacao = " + status;
+		String sql = "SELECT c.nome AS nome_cao, u.nome AS nome_adotante, s.* FROM t_cao c, t_solicit_adocao s, t_usuario u WHERE c.id_cao = s.id_cao and u.id_usuario = s.id_adotante and s.status_aprovacao = " + status;
 		
 		List<SolicitacaoAdocaoVO> solicitacoes = this.selectListSolicitacoes(conexao, sql);
 		
